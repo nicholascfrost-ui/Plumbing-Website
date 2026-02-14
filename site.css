@@ -94,3 +94,29 @@ body {
 .mobile-call-cta {
   box-shadow: 0 14px 30px rgba(30, 64, 175, 0.35);
 }
+
+.project-card {
+  transition: transform 260ms ease, box-shadow 260ms ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.14);
+}
+
+.project-image {
+  transition: transform 420ms ease, filter 420ms ease;
+}
+
+.project-card:hover .project-image {
+  transform: scale(1.04);
+  filter: saturate(1.08);
+}
+
+.carousel-shell {
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
+}
+
+.carousel-item {
+  transition: opacity 250ms ease, transform 250ms ease;
+}
