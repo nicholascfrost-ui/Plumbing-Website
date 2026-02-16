@@ -36,21 +36,22 @@ if (!document.getElementById(stickyCallId)) {
 
 const carousel = document.getElementById('testimonialCarousel');
 if (carousel) {
-  const slides = Array.from(carousel.querySelectorAll('.carousel-item'));
+  const track = carousel.querySelector('.carousel-track');
+  const slides = track ? Array.from(track.querySelectorAll('.carousel-item')) : [];
   const next = document.getElementById('carouselNext');
   const prev = document.getElementById('carouselPrev');
-  let index = slides.findIndex((slide) => slide.classList.contains('active'));
-  if (index < 0) index = 0;
+  let index = 0;
 
   const show = (newIndex) => {
-    slides[index].classList.add('hidden');
-    slides[index].classList.remove('active');
     index = (newIndex + slides.length) % slides.length;
-    slides[index].classList.remove('hidden');
-    slides[index].classList.add('active');
+    if (track) {
+      track.style.transform = `translateX(-${index * 100}%)`;
+    }
   };
 
-  if (next) next.addEventListener('click', () => show(index + 1));
-  if (prev) prev.addEventListener('click', () => show(index - 1));
-  setInterval(() => show(index + 1), 5000);
+  if (slides.length > 0) {
+    if (next) next.addEventListener('click', () => show(index + 1));
+    if (prev) prev.addEventListener('click', () => show(index - 1));
+    setInterval(() => show(index + 1), 5000);
+  }
 }
